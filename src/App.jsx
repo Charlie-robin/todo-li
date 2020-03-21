@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import styles from "./App.module.scss";
 import { firestore } from "./firebase.js";
+
+import TodoList from "./components/TodoList";
+import TodoListInputs from "./components/TodoListInputs";
 
 function App() {
   const [todo, updateTodo] = useState([]);
@@ -23,30 +26,24 @@ function App() {
     getTodos();
   }, []);
 
-  const deleteFromDb = (value) => {
+  const deleteFromDb = value => {
     const newArray = [...todo];
-    console.log(newArray);
-    console.log(value);
-    const showd = newArray.filter( obj => obj.title !== value);
-    console.log(showd);
+    const newData = newArray.filter(obj => obj.id !== value);
+    const newDoc = { items: newData };
 
-    // const newDoc = {
-    //   items: newArray
-    // };
-
-    // firestore
-    //   .collection("todo")
-    //   .doc("test")
-    //   .set(newDoc)
-    //   .then(() => {
-    //     fetchTodos();
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+    firestore
+      .collection("todo-list")
+      .doc("user")
+      .set(newDoc)
+      .then(() => {
+        getTodos();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
-  
+  const randomId = () => Math.floor(Math.random() * Math.floor(999999));
 
   const getDate = () => {
     const date = new Date();
@@ -56,10 +53,14 @@ function App() {
   const addNewListDb = () => {
     const items = [
       {
+        id: randomId(),
         title: title,
         info: info,
         dateCreated: getDate(),
         dateCompleteBy: dateComplete
+          .split("-")
+          .reverse()
+          .join("-")
       },
       ...todo
     ];
@@ -78,44 +79,32 @@ function App() {
 
   const newListJsx = () => (
     <>
-      <input
-        type="text"
-        placeholder="Title"
-        onInput={event => addTitle(event.target.value)}
+      <TodoListInputs
+        title={value => addTitle(value)}
+        info={value => addInfo(value)}
+        dateComplete={value => addDateComplete(value)}
+        handleClick={addNewListDb}
       />
-      <input
-        type="text"
-        placeholder="Todo item..."
-        onInput={event => addInfo(event.target.value)}
-      />
-      <input
-        type="date"
-        id="start"
-        name="trip-start"
-        min="2020-01-01"
-        max="2021-12-31"
-        onInput={event => addDateComplete(event.target.value)}
-      ></input>
-      <button onClick={addNewListDb}>Submit</button>
     </>
   );
 
-  const insertTodoJsx = () => {
+  const insertTodoListJsx = () => {
     return todo.map(todoItem => (
       <>
-        <p>{todoItem.title}</p>
-        <p>{todoItem.info}</p>
-        <p>{todoItem.dateCreated}</p>
-        <p>{todoItem.dateCompleteBy}</p>
-        <button onClick={() => deleteFromDb(todoItem.title)}>Delete</button>
+        <TodoList
+          itemList={todoItem}
+          handleClick={() => deleteFromDb(todoItem.id)}
+        />
       </>
     ));
   };
 
   return (
     <>
-      {insertTodoJsx()}
-      {newListJsx()}
+      <section className={styles.container}>
+        {newListJsx()}
+        {insertTodoListJsx()}
+      </section>
     </>
   );
 }

@@ -1,0 +1,103 @@
+@import "../../variables.scss";
+
+.todoListInputs {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: $off-black 1px solid;
+  border-radius: 10px;
+  overflow: hidden;
+
+  input {
+    height: 12.5%;
+    outline: none;
+    border: none;
+    padding: $base-spacing;
+    color: $off-black;
+
+    
+
+    &:first-child {
+      background-color: $primary-color;
+      height: 25%;
+      text-align: center;
+      text-transform: uppercase;
+
+      &:focus {
+        background-color: $primary-color-shade;
+    }
+    }
+
+    // &::placeholder {
+    //   color: #437bf9;
+    // }
+  }
+
+  textarea {
+      text-align: center;
+    padding: $base-spacing;
+    height: 50%;
+    border: none;
+    box-shadow: none;
+    background-color: $off-white;
+
+    &:focus {
+      outline: none;
+      background-color: #fff;
+    }
+  }
+
+  div {
+    width: 100%;
+    display: flex;
+    p {
+      text-align: center;
+      padding: $base-spacing;
+      font-size: 12px;
+      width: 50%;
+      height: 100%;
+      background-color: $primary-color;
+      text-transform: uppercase;
+      color: $off-black;
+    }
+    input {
+      text-align: right;
+      height: 100%;
+      width: 50%;
+      border-top: 1px solid $primary-color;
+      border-bottom: 1px solid $primary-color;
+      text-transform: uppercase;
+      background-color: $off-white;
+
+      &:focus {
+          background-color: #fff;
+      }
+    }
+  }
+
+  button {
+    height: 25%;
+    color: $off-black;
+    background-color: $off-white;
+    border: none;
+
+    &:hover {
+        background-color: $primary-color-shade;
+        
+    }
+  }
+}
+
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 1;
+  color: $off-black;
+}
+
+// [type="date"] {
+//   background: #fff
+//     url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)
+//     97% 50% no-repeat;
+// }
