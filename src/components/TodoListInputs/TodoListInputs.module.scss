@@ -4,86 +4,98 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  border: $off-black 1px solid;
-  border-radius: 10px;
+  border: $secondary-color 2px solid;
+  border-radius: $border-radius;
   overflow: hidden;
+  color: $secondary-color;
 
   input {
-    height: 12.5%;
     outline: none;
     border: none;
     padding: $base-spacing;
-    color: $off-black;
+    color: $secondary-color;
 
-    
-
-    &:first-child {
-      background-color: $primary-color;
-      height: 25%;
-      text-align: center;
-      text-transform: uppercase;
-
-      &:focus {
-        background-color: $primary-color-shade;
-    }
+    &:focus {
+      background-color: $primary-color-shade;
     }
 
-    // &::placeholder {
-    //   color: #437bf9;
-    // }
+    &::placeholder {
+      color: $secondary-color;
+    }
   }
 
   textarea {
-      text-align: center;
     padding: $base-spacing;
     height: 50%;
     border: none;
     box-shadow: none;
     background-color: $off-white;
+    border-top: 1px solid $secondary-color;
+    border-bottom: 1px solid $secondary-color;
 
     &:focus {
       outline: none;
-      background-color: #fff;
+      background-color: $primary-color-shade;
     }
+
+    &::placeholder {
+      color: $secondary-color;
+    }
+  }
+
+  > div {
+    height: 20%;
   }
 
   div {
     width: 100%;
     display: flex;
+
+    h2 {
+      padding: 0 $base-spacing;
+      text-transform: uppercase;
+      width: 50%;
+      background: $primary-color;
+      font-weight: 350;
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+    }
+
     p {
-      text-align: center;
-      padding: $base-spacing;
-      font-size: 12px;
+      font-size: 14px;
       width: 50%;
       height: 100%;
       background-color: $primary-color;
       text-transform: uppercase;
-      color: $off-black;
+      display: flex;
+      align-items: center;
+      padding: 0 $base-spacing;
     }
+
     input {
-      text-align: right;
       height: 100%;
       width: 50%;
-      border-top: 1px solid $primary-color;
-      border-bottom: 1px solid $primary-color;
+
       text-transform: uppercase;
-      background-color: $off-white;
 
       &:focus {
-          background-color: #fff;
+        background-color: $primary-color-shade;
       }
     }
   }
 
   button {
-    height: 25%;
-    color: $off-black;
+    height: 20%;
     background-color: $off-white;
     border: none;
+    border-top: 1px solid $secondary-color;
+    color: $secondary-color;
+    text-transform: uppercase;
+    
 
     &:hover {
-        background-color: $primary-color-shade;
-        
+      background-color: $primary-color-shade;
     }
   }
 }
@@ -93,11 +105,13 @@
 }
 [type="date"]::-webkit-calendar-picker-indicator {
   opacity: 1;
-  color: $off-black;
+  color: $secondary-color;
+
+  &:hover {
+    background-color: unset;
+  }
 }
 
-// [type="date"] {
-//   background: #fff
-//     url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)
-//     97% 50% no-repeat;
-// }
+[type="date"] {
+  background-color: $off-white;
+}
