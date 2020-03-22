@@ -5,7 +5,7 @@ const TodoListInputs = props => {
   const { title, info, dateComplete, handleClick } = props;
   return (
     <>
-      <div className={styles.todoListInputs}>
+      <form className={styles.todoListInputs} required>
         <div>
           <h2>New Todo</h2>
           <input
@@ -32,7 +32,7 @@ const TodoListInputs = props => {
           ></input>
         </div>
         <button onClick={handleClick}>Create</button>
-      </div>
+      </form >
     </>
   );
 };

@@ -17,7 +17,8 @@ const TodoList = props => {
         .join()
     );
 
-  const listStyles = dateDiff > 2 ? null : dateDiff > 1 ? styles.amber : styles.red;
+  const listStyles =
+    dateDiff > 2 ? null : dateDiff > 1 ? styles.yellow : styles.red;
 
   return (
     <>
@@ -25,10 +26,21 @@ const TodoList = props => {
         <h2>{itemList.title || "No title given"}</h2>
         <p>{itemList.info || "No info given"}</p>
         <div>
-          <p>{itemList.dateCreated}</p>
-          <p>{itemList.dateCompleteBy || "N/A"}</p>
+          <p>
+            Creation : {" "}
+            {itemList.dateCreated
+              .split("-")
+              .slice(0, 2)
+              .join("/")}
+          </p>
+          <p>Completion : {" "}
+            {itemList.dateCompleteBy
+              .split("-")
+              .slice(0, 2)
+              .join("/") || "N/A"}
+          </p>
         </div>
-        <button onClick={handleClick}>Completed</button>
+        <button onClick={handleClick}>Complete</button>
       </div>
     </>
   );

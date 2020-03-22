@@ -4,23 +4,24 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  border: $secondary-color 2px solid;
+  border: $secondary-blue 2px solid;
   border-radius: $border-radius;
   overflow: hidden;
-  color: $secondary-color;
+  color: $secondary-blue;
 
   input {
     outline: none;
     border: none;
     padding: $base-spacing;
-    color: $secondary-color;
+    color: $secondary-blue;
+    background-color: $off-white;
 
     &:focus {
-      background-color: $primary-color-shade;
+      background-color: $primary-blue-shade;
     }
 
     &::placeholder {
-      color: $secondary-color;
+      color: $secondary-blue;
     }
   }
 
@@ -30,16 +31,16 @@
     border: none;
     box-shadow: none;
     background-color: $off-white;
-    border-top: 1px solid $secondary-color;
-    border-bottom: 1px solid $secondary-color;
+    border-top: 1px solid $secondary-blue;
+    border-bottom: 1px solid $secondary-blue;
 
     &:focus {
       outline: none;
-      background-color: $primary-color-shade;
+      background-color: $primary-blue-shade;
     }
 
     &::placeholder {
-      color: $secondary-color;
+      color: $secondary-blue;
     }
   }
 
@@ -55,7 +56,7 @@
       padding: 0 $base-spacing;
       text-transform: uppercase;
       width: 50%;
-      background: $primary-color;
+      background: $primary-blue;
       font-weight: 350;
       display: flex;
       align-items: center;
@@ -66,7 +67,7 @@
       font-size: 14px;
       width: 50%;
       height: 100%;
-      background-color: $primary-color;
+      background-color: $primary-blue;
       text-transform: uppercase;
       display: flex;
       align-items: center;
@@ -80,7 +81,7 @@
       text-transform: uppercase;
 
       &:focus {
-        background-color: $primary-color-shade;
+        background-color: $primary-blue-shade;
       }
     }
   }
@@ -89,13 +90,15 @@
     height: 20%;
     background-color: $off-white;
     border: none;
-    border-top: 1px solid $secondary-color;
-    color: $secondary-color;
+    border-top: 1px solid $secondary-blue;
+    color: $secondary-blue;
     text-transform: uppercase;
+    transition: background-color .8s;
     
 
     &:hover {
-      background-color: $primary-color-shade;
+      background-color: $primary-blue;
+      cursor: pointer;
     }
   }
 }
@@ -105,7 +108,7 @@
 }
 [type="date"]::-webkit-calendar-picker-indicator {
   opacity: 1;
-  color: $secondary-color;
+  color: $secondary-blue;
 
   &:hover {
     background-color: unset;
