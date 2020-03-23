@@ -79,13 +79,17 @@ function App() {
       });
   };
 
+  const checkStateAddDb = () =>
+    title !== "" && info !== "" && dateComplete !== "" ? addNewListDb() : null;
+
   const newListJsx = () => (
     <>
       <TodoListInputs
         title={value => addTitle(value)}
         info={value => addInfo(value)}
         dateComplete={value => addDateComplete(value)}
-        handleClick={addNewListDb}
+        // handleClick={addNewListDb}
+        handleClick={checkStateAddDb}
       />
     </>
   );

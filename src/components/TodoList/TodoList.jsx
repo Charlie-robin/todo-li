@@ -3,7 +3,6 @@ import styles from "./TodoList.module.scss";
 
 const TodoList = props => {
   const { itemList, handleClick, currentDate } = props;
-  console.log(currentDate);
   const dateDiff =
     parseInt(
       itemList.dateCompleteBy
