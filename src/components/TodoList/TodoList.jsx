@@ -2,7 +2,8 @@ import React from "react";
 import styles from "./TodoList.module.scss";
 
 const TodoList = props => {
-  const { itemList, handleClick } = props;
+  const { itemList, handleClick, currentDate } = props;
+  console.log(currentDate);
   const dateDiff =
     parseInt(
       itemList.dateCompleteBy
@@ -11,7 +12,7 @@ const TodoList = props => {
         .join()
     ) -
     parseInt(
-      itemList.dateCreated
+      currentDate
         .split("-")
         .slice(0, 1)
         .join()

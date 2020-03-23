@@ -48,7 +48,7 @@ function App() {
   const getDate = () => {
     const date = new Date();
     return `${date.getDate()}-${
-      date.getMonth() < 10 ? "0" + (date.getMonth()+1) : (date.getMonth()+1)
+      date.getMonth() < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1
     }-${date.getFullYear()}`;
   };
 
@@ -95,6 +95,7 @@ function App() {
       <>
         <TodoList
           itemList={todoItem}
+          currentDate={getDate()}
           handleClick={() => deleteFromDb(todoItem.id)}
         />
       </>
