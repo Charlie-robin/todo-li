@@ -3,41 +3,39 @@ import styles from "./TodoList.module.scss";
 
 const TodoList = props => {
   const { itemList, handleClick, currentDate } = props;
-  const dateDiff =
-    parseInt(
-      itemList.dateCompleteBy
-        .split("-")
-        .slice(0, 1)
-        .join()
-    ) -
-    parseInt(
-      currentDate
-        .split("-")
-        .slice(0, 1)
-        .join()
-    );
+
+  const dateDiff = () => {
+    const msPerDay = 24 * 60 * 60 * 1000;
+    const timeLeft =
+      new Date(itemList.dateCompleteBy).getTime() - currentDate.getTime();
+    return Math.floor(timeLeft / msPerDay);
+  };
+
+  console.log(dateDiff());
 
   const listStyles =
-    dateDiff > 2 ? null : dateDiff > 1 ? styles.yellow : styles.red;
+    dateDiff() > 3 ? null : dateDiff() > 1 ? styles.yellow : styles.red;
 
   return (
     <>
-      <div className={`${styles.todoList} ${listStyles}`}>
+      <div className={`${styles.todoList} ${listStyles} ${styles.fadeIn}`}>
         <h2>{itemList.title || "No title given"}</h2>
         <p>{itemList.info || "No info given"}</p>
         <div>
           <p>
-            Creation : {" "}
-            {itemList.dateCreated
+            Creation :{" "}
+            {itemList.dateCreatedStr
               .split("-")
               .slice(0, 2)
-              .join("/")}
+              .join(" / ") || "N/A"}
           </p>
-          <p>Completion : {" "}
+          <p>
+            Completion :{" "}
             {itemList.dateCompleteBy
               .split("-")
+              .reverse()
               .slice(0, 2)
-              .join("/") || "N/A"}
+              .join(" / ") || "N/A"}
           </p>
         </div>
         <button onClick={handleClick}>Complete</button>

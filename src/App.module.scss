@@ -7,10 +7,9 @@
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 50px;
-  padding: 50px;
-  grid-template-rows: repeat(3, minmax(250px, auto));
-  background-image: linear-gradient($primary-blue-trans, $secondary-blue), url(./assets/imgs/hip-square.png);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 50px;
+    padding: 0 50px;
+    background-color: $off-black;
 }
