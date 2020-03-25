@@ -11,8 +11,6 @@ const TodoList = props => {
     return Math.floor(timeLeft / msPerDay);
   };
 
-  console.log(dateDiff());
-
   const listStyles =
     dateDiff() > 3 ? null : dateDiff() > 1 ? styles.yellow : styles.red;
 

@@ -3,6 +3,7 @@ import styles from "./App.module.scss";
 import firebase, { provider, firestore } from "./firebase";
 
 import Dashboard from "./containers/DashBoard";
+import NavBar from "./containers/NavBar";
 import TodoListInputs from "./components/TodoListInputs";
 
 function App() {
@@ -131,22 +132,16 @@ function App() {
   const checkStateAddDb = () =>
     title !== "" && info !== "" && dateComplete !== "" ? addNewListDb() : null;
 
-  const newListJsx = () => (
-    <>
-      <TodoListInputs
-        title={value => addTitle(value)}
-        info={value => addInfo(value)}
-        dateComplete={value => addDateComplete(value)}
-        handleClick={checkStateAddDb}
-      />
-    </>
-  );
-
   return (
     <>
       {/* <button onClick={() => signInWithRedirect()}> Sign in </button>
     <button onClick={() => signOut()}> Sign Out </button>  */}
-      <section className={styles.container}>{newListJsx()}</section>
+      <NavBar
+        title={value => addTitle(value)}
+        info={value => addInfo(value)}
+        dateComplete={value => addDateComplete(value)}
+        checkState={checkStateAddDb}
+      />
       <Dashboard
         todos={todo}
         getDate={() => getDate()}
