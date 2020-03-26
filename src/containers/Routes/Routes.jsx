@@ -8,7 +8,7 @@ import Completed from "../Completed";
 const NotFound = () => <p>Not Found!!!</p>;
 
 const Routes = props => {
-  const { todo, getDate, delDb } = props;
+  const { todo, getDate, delDb, addCompleted, compList } = props;
   return (
     <>
         <Router>
@@ -16,9 +16,10 @@ const Routes = props => {
             todo={todo}
             getDate={() => getDate()}
             delDb={value => delDb(value)}
+            addCompleted={value => addCompleted(value)}
             path="/dashboard"
           />
-          <Completed path="completed"/>
+          <Completed path="completed" compList={compList} getDate={() => getDate()}/>
           
         </Router>
     </>

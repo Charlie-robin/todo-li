@@ -6,13 +6,15 @@ import { Link } from "@reach/router";
 
 import TodoListInputs from "../../components/TodoListInputs";
 
-
 const NavBar = props => {
   const { title, info, dateComplete, checkInput } = props;
   const [inputModalVisible, showInputModal] = useState(false);
 
-  const insertModalJsx = inputModalVisible ?
-  <section className={styles.inputModal} onClick={() => showInputModal(!inputModalVisible)}>
+  const insertModalJsx = inputModalVisible ? (
+    <section
+      className={styles.inputModal}
+      onClick={() => showInputModal(!inputModalVisible)}
+    >
       <div onClick={event => event.stopPropagation()}>
         <TodoListInputs
           title={value => title(value)}
@@ -22,19 +24,26 @@ const NavBar = props => {
           hideModal={() => showInputModal(false)}
         />
       </div>
-    </section>: null;
-  
+    </section>
+  ) : null;
+
   return (
     <>
       <navbar className={styles.navBar}>
         <div>
           <h1>&lt;Todo&gt;&lt;Li&gt;</h1>
           <div>
-            <p>Get it <span className={styles.changingWord}></span></p>
+            <p>
+              Get it <span className={styles.changingWord}></span>
+            </p>
           </div>
         </div>
-          <Link  to={"/completed"}><p>Completed</p></Link>
-          <Link to={"/dashboard"}><p>Home</p></Link>
+        <Link to={"/completed"}>
+          <p>Completed</p>
+        </Link>
+        <Link to={"/dashboard"}>
+          <p>Home</p>
+        </Link>
         <FontAwesomeIcon icon={faGoogle} />
       </navbar>
       <button

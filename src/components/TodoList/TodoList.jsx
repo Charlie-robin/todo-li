@@ -2,17 +2,17 @@ import React from "react";
 import styles from "./TodoList.module.scss";
 
 const TodoList = props => {
-  const { itemList, handleClick, currentDate } = props;
+  const { itemList, currentDate, delDb, addCompleted } = props;
 
   const dateDiff = () => {
     const msPerDay = 24 * 60 * 60 * 1000;
     const timeLeft =
       new Date(itemList.dateCompleteBy).getTime() - currentDate.getTime();
-    return Math.floor(timeLeft / msPerDay);
+    return Math.ceil(timeLeft / msPerDay);
   };
 
   const listStyles =
-    dateDiff() > 3 ? null : dateDiff() >= 1 ? styles.yellow : styles.red;
+    dateDiff() > 3 ? null : dateDiff() > 1 ? styles.yellow : styles.red;
 
   return (
     <>
@@ -37,8 +37,8 @@ const TodoList = props => {
           </p>
         </div>
         <div>
-          <button onClick={handleClick}>Complete</button>
-          <button onClick={handleClick}>Delete</button>
+          <button onClick={addCompleted}>Complete</button>
+          <button onClick={delDb}>Delete</button>
         </div>
       </div>
     </>

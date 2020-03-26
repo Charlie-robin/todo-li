@@ -3,14 +3,15 @@ import styles from "./DashBoard.module.scss";
 import TodoList from "../../components/TodoList";
 
 const DashBoard = props => {
-  const { todo, getDate, delDb } = props;
+  const { todo, getDate, delDb, addCompleted } = props;
   const insertTodoLists = () => {
     return todo.map(todoItem => (
       <>
         <TodoList
           itemList={todoItem}
           currentDate={getDate()}
-          handleClick={() => delDb(todoItem.id)}
+          delDb={() => delDb(todoItem.id)}
+          addCompleted={() => addCompleted(todoItem.id) }
         />
       </>
     ));

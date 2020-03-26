@@ -3,10 +3,10 @@ import styles from "./App.module.scss";
 import firebase, { provider, firestore } from "./firebase";
 
 import Routes from "./containers/Routes";
-import NavBar from "./containers/NavBar"
+import NavBar from "./containers/NavBar";
 
 function App() {
-  const [completed, updateCompleted] = useState([]);
+  const [completedList, updateCompleted] = useState([]);
   const [todo, updateTodo] = useState([]);
   const [title, addTitle] = useState("");
   const [info, addInfo] = useState("");
@@ -62,11 +62,6 @@ function App() {
   //   }
   // }, [user]);
 
-  useEffect(() => {
-    getTodos();
-    // getCompleted()
-  }, []);
-
   const getTodos = () => {
     firestore
       .collection("todo-list")
@@ -78,21 +73,26 @@ function App() {
       });
   };
 
-  // const getCompleted = () => {
-  //   firestore
-  //     .collection("todo-list")
-  //     .doc("user")
-  //     .get()
-  //     .then(doc => {
-  //       const retirievedArray = doc.data().completed;
-  //       updateCompleted(retirievedArray);
-  //     });
-  // };
+  const getCompleted = () => {
+    firestore
+      .collection("todo-list")
+      .doc("user")
+      .get()
+      .then(doc => {
+        const retirievedArray = doc.data().completed;
+        updateCompleted(retirievedArray);
+      });
+  };
+
+  useEffect(() => {
+    getTodos();
+    getCompleted();
+  }, []);
 
   const deleteFromDb = value => {
     const newArray = [...todo];
     const newData = newArray.filter(obj => obj.id !== value);
-    const newDoc = { items: newData };
+    const newDoc = { items: newData, completed: completedList };
 
     firestore
       .collection("todo-list")
@@ -118,7 +118,7 @@ function App() {
   };
 
   const addNewListDb = () => {
-    const items = [
+    const newItems = [
       {
         id: randomId(),
         title: title,
@@ -129,14 +129,35 @@ function App() {
       },
       ...todo
     ];
-  
+
+    const newDoc = { items: newItems, completed: completedList };
+
     firestore
       .collection("todo-list")
-      .doc("test")
-      .set({ items })
+      .doc("user")
+      .update(newDoc)
       .then(() => {
         getTodos();
-        console.log("doing something")
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const addToCompletedDb = value => {
+    const newArray = [...todo];
+    const removedComp = newArray.filter(obj => obj.id !== value);
+    const findComp = newArray.filter(obj => obj.id === value);
+    const newComp = [...findComp, ...completedList];
+    const newDoc = { items: removedComp, completed: newComp };
+
+    firestore
+      .collection("todo-list")
+      .doc("user")
+      .update(newDoc)
+      .then(() => {
+        getCompleted();
+        getTodos();
       })
       .catch(err => {
         console.log(err);
@@ -160,6 +181,8 @@ function App() {
         todo={todo}
         getDate={() => getDate()}
         delDb={value => deleteFromDb(value)}
+        addCompleted={value => addToCompletedDb(value)}
+        compList={completedList}
       />
     </>
   );
