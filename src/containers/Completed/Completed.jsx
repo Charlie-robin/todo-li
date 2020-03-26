@@ -4,7 +4,9 @@ import styles from "./Completed.module.scss";
 const Completed = () => {
   return (
     <>
-      <p>Completed works</p>
+      <section className={styles.completed}>
+      	<p>Completed works</p>
+      </section>
     </>
   );
 };

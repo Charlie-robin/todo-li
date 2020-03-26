@@ -12,16 +12,14 @@ const Routes = props => {
   return (
     <>
         <Router>
-        <Redirect noThrow from="/" to="dashboard" />
-          
           <Dashboard
             todo={todo}
             getDate={() => getDate()}
             delDb={value => delDb(value)}
-            path={"dashboard"}
+            path="/dashboard"
           />
-          <Completed path={"completed"}/>
-          <NotFound default />
+          <Completed path="completed"/>
+          
         </Router>
     </>
   );
