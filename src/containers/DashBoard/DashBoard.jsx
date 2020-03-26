@@ -3,9 +3,9 @@ import styles from "./DashBoard.module.scss";
 import TodoList from "../../components/TodoList";
 
 const DashBoard = props => {
-  const { todos, getDate, delDb } = props;
+  const { todo, getDate, delDb } = props;
   const insertTodoLists = () => {
-    return todos.map(todoItem => (
+    return todo.map(todoItem => (
       <>
         <TodoList
           itemList={todoItem}

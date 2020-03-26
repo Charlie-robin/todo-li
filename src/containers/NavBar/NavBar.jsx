@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styles from "./NavBar.module.scss";
-import TodoListInputs from "../../components/TodoListInputs";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { Link } from "@reach/router";
+
+import TodoListInputs from "../../components/TodoListInputs";
+
 
 const NavBar = props => {
   const { title, info, dateComplete, checkInput } = props;
@@ -31,9 +33,10 @@ const NavBar = props => {
             <p>Get it <span className={styles.changingWord}></span></p>
           </div>
         </div>
+          <Link  to={"/completed"}><p>Completed</p></Link>
+          <Link to={"/dashboard"}><p>Home</p></Link>
         <FontAwesomeIcon icon={faGoogle} />
       </navbar>
-
       <button
         className={styles.navBtn}
         onClick={() => showInputModal(!inputModalVisible)}

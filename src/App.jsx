@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./App.module.scss";
 import firebase, { provider, firestore } from "./firebase";
 
-import Dashboard from "./containers/DashBoard";
-import NavBar from "./containers/NavBar";
-import TodoListInputs from "./components/TodoListInputs";
+import Routes from "./containers/Routes";
+import NavBar from "./containers/NavBar"
 
 function App() {
   const [todo, updateTodo] = useState([]);
@@ -140,10 +139,10 @@ function App() {
         title={value => addTitle(value)}
         info={value => addInfo(value)}
         dateComplete={value => addDateComplete(value)}
-        checkInput={checkInputsAddDb}
+        checkInput={() => checkInputsAddDb()}
       />
-      <Dashboard
-        todos={todo}
+      <Routes
+        todo={todo}
         getDate={() => getDate()}
         delDb={value => deleteFromDb(value)}
       />
