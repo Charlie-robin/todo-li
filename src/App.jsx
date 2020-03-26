@@ -129,7 +129,7 @@ function App() {
       });
   };
 
-  const checkStateAddDb = () =>
+  const checkInputsAddDb = () =>
     title !== "" && info !== "" && dateComplete !== "" ? addNewListDb() : null;
 
   return (
@@ -140,7 +140,7 @@ function App() {
         title={value => addTitle(value)}
         info={value => addInfo(value)}
         dateComplete={value => addDateComplete(value)}
-        checkState={checkStateAddDb}
+        checkInput={checkInputsAddDb}
       />
       <Dashboard
         todos={todo}

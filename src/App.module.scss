@@ -6,10 +6,6 @@
   box-sizing: border-box;
 }
 
-.container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 50px;
-    padding: 0 50px;
-    background-color: $off-black;
+body{
+    background-image: linear-gradient($off-white-trans, $off-black-trans), url(./assets/imgs/hip-square.png);
 }

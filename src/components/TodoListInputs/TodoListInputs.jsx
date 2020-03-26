@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./TodoListInputs.module.scss";
 
 const TodoListInputs = props => {
-  const { title, info, dateComplete, handleClick } = props;
+  const { title, info, dateComplete, handleClick,  } = props;
   return (
     <>
       <form className={styles.todoListInputs} required>
@@ -31,7 +31,7 @@ const TodoListInputs = props => {
             required
           ></input>
         </div>
-        <button onClick={handleClick}>Create</button>
+        <button onClick={() => {handleClick(); }}>Create</button>
       </form >
     </>
   );

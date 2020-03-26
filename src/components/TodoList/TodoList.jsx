@@ -12,7 +12,7 @@ const TodoList = props => {
   };
 
   const listStyles =
-    dateDiff() > 3 ? null : dateDiff() > 1 ? styles.yellow : styles.red;
+    dateDiff() > 3 ? null : dateDiff() >= 1 ? styles.yellow : styles.red;
 
   return (
     <>
