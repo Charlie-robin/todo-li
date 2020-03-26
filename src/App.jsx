@@ -6,6 +6,7 @@ import Routes from "./containers/Routes";
 import NavBar from "./containers/NavBar"
 
 function App() {
+  const [completed, updateCompleted] = useState([]);
   const [todo, updateTodo] = useState([]);
   const [title, addTitle] = useState("");
   const [info, addInfo] = useState("");
@@ -60,8 +61,10 @@ function App() {
   //     getTodos();
   //   }
   // }, [user]);
+
   useEffect(() => {
     getTodos();
+    // getCompleted()
   }, []);
 
   const getTodos = () => {
@@ -70,10 +73,21 @@ function App() {
       .doc("user")
       .get()
       .then(doc => {
-        const retirievedList = doc.data().items;
-        updateTodo(retirievedList);
+        const retirievedArray = doc.data().items;
+        updateTodo(retirievedArray);
       });
   };
+
+  // const getCompleted = () => {
+  //   firestore
+  //     .collection("todo-list")
+  //     .doc("user")
+  //     .get()
+  //     .then(doc => {
+  //       const retirievedArray = doc.data().completed;
+  //       updateCompleted(retirievedArray);
+  //     });
+  // };
 
   const deleteFromDb = value => {
     const newArray = [...todo];
@@ -115,13 +129,14 @@ function App() {
       },
       ...todo
     ];
-
+  
     firestore
       .collection("todo-list")
-      .doc("user")
+      .doc("test")
       .set({ items })
       .then(() => {
         getTodos();
+        console.log("doing something")
       })
       .catch(err => {
         console.log(err);

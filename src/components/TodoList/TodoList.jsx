@@ -36,7 +36,10 @@ const TodoList = props => {
               .join(" / ") || "N/A"}
           </p>
         </div>
-        <button onClick={handleClick}>Complete</button>
+        <div>
+          <button onClick={handleClick}>Complete</button>
+          <button onClick={handleClick}>Delete</button>
+        </div>
       </div>
     </>
   );

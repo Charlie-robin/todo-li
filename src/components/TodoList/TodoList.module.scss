@@ -46,52 +46,62 @@
       }
     }
   }
-
-  button {
+  div {
     height: 20%;
     width: 100%;
-    text-transform: uppercase;
-    background: none;
-    border: none;
-    color: $secondary-green;
-    border-top: 1px solid $secondary-green;
-    transition: background-color 0.8s;
 
-    &:hover {
-      background-color: $primary-green;
-      cursor: pointer;
+    button {
+      height: 100%;
+      width: 50%;
+      text-transform: uppercase;
+      background: none;
+      border: none;
+      color: $secondary-green;
+      border-top: 1px solid $secondary-green;
+      transition: background-color 0.8s;
+
+      &:hover {
+        background-color: $primary-red;
+        cursor: pointer;
+      }
+
+      &:first-child:hover {
+        background-color: $primary-green;
+      }
     }
   }
 }
 
 .red {
+  color: $secondary-red;
+  border: 2px solid $secondary-red;
+  h2 {
+    background-color: $primary-red;
     color: $secondary-red;
-    border: 2px solid $secondary-red;
-    h2 {
-      background-color: $primary-red;
-      color: $secondary-red;
-    }
-  
-    > p {
-      border-top: 1px solid $secondary-red;
-      border-bottom: 1px solid $secondary-red;
-    }
-  
-    div {
-      p {
-        &:first-child {
-          background: $primary-red;
-        }
+  }
+
+  > p {
+    border-top: 1px solid $secondary-red;
+    border-bottom: 1px solid $secondary-red;
+  }
+
+  div {
+    p {
+      &:first-child {
+        background: $primary-red;
       }
     }
+  }
+  div {
     button {
       color: $secondary-red;
       border-top: 1px solid $secondary-red;
-  
+
       &:hover {
-          background: $primary-red;
+        background: $primary-red;
       }
     }
+  }
 }
 
 .yellow {
@@ -114,36 +124,37 @@
       }
     }
   }
-  button {
-    color: $secondary-yellow;
-    border-top: 1px solid $secondary-yellow;
+  div {
+    button {
+      color: $secondary-yellow;
+      border-top: 1px solid $secondary-yellow;
 
-    &:hover {
+      &:hover {
         background: $primary-yellow;
+      }
     }
   }
 }
 
 .fadeIn {
-	-webkit-animation: fadeIn 0.6s linear both;
-	        animation: fadeIn 0.6s linear both;
+  -webkit-animation: fadeIn 0.6s linear both;
+  animation: fadeIn 0.6s linear both;
 }
 
 .puffOut {
-	-webkit-animation: puffOut 1.5s both;
-	        animation: puffOut 1.5s both;
+  -webkit-animation: puffOut 1.5s both;
+  animation: puffOut 1.5s both;
 }
 
-
- @-webkit-keyframes fadeIn {
+@-webkit-keyframes fadeIn {
   0% {
     -webkit-transform: translateZ(80px);
-            transform: translateZ(80px);
+    transform: translateZ(80px);
     opacity: 0;
   }
   100% {
     -webkit-transform: translateZ(0);
-            transform: translateZ(0);
+    transform: translateZ(0);
     opacity: 1;
   }
 }
@@ -151,46 +162,45 @@
 @keyframes fadeIn {
   0% {
     -webkit-transform: translateZ(80px);
-            transform: translateZ(80px);
+    transform: translateZ(80px);
     opacity: 0;
   }
   100% {
     -webkit-transform: translateZ(0);
-            transform: translateZ(0);
+    transform: translateZ(0);
     opacity: 1;
   }
 }
 
-
- @-webkit-keyframes puffOut {
+@-webkit-keyframes puffOut {
   0% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
     -webkit-filter: blur(0px);
-            filter: blur(0px);
+    filter: blur(0px);
     opacity: 1;
   }
   100% {
     -webkit-transform: scale(2);
-            transform: scale(2);
+    transform: scale(2);
     -webkit-filter: blur(4px);
-            filter: blur(4px);
+    filter: blur(4px);
     opacity: 0;
   }
 }
 @keyframes puffOut {
   0% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
     -webkit-filter: blur(0px);
-            filter: blur(0px);
+    filter: blur(0px);
     opacity: 1;
   }
   100% {
     -webkit-transform: scale(2);
-            transform: scale(2);
+    transform: scale(2);
     -webkit-filter: blur(4px);
-            filter: blur(4px);
+    filter: blur(4px);
     opacity: 0;
   }
 }
