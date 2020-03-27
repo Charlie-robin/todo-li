@@ -147,7 +147,10 @@ function App() {
   const addToCompletedDb = value => {
     const newArray = [...todo];
     const removedComp = newArray.filter(obj => obj.id !== value);
+
     const findComp = newArray.filter(obj => obj.id === value);
+    findComp[0].dateCompletedStr = getDateString();
+
     const newComp = [...findComp, ...completedList];
     const newDoc = { items: removedComp, completed: newComp };
 
