@@ -149,7 +149,7 @@ function App() {
     const removedComp = newArray.filter(obj => obj.id !== value);
 
     const findComp = newArray.filter(obj => obj.id === value);
-    findComp[0].dateCompletedStr = getDateString();
+    findComp[0].dateCompletedStr ="02-02-2020";
 
     const newComp = [...findComp, ...completedList];
     const newDoc = { items: removedComp, completed: newComp };

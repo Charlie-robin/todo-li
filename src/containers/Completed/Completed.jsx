@@ -1,13 +1,15 @@
 import React from "react";
 import styles from "./Completed.module.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Completed = props => {
   const { compList, getDate } = props;
+  const [month, changeMonth] = useState("");
 
-  const getDaysInMonth = function(month, year) {
-    return new Date(year, month, 0).getDate();
-  };
+  useEffect(() => {
+    addMonthToState(curMonthNum)
+  }, []);
+
 
   const monthsArray = [
     "January",
@@ -24,55 +26,82 @@ const Completed = props => {
     "December"
   ];
 
-  const curDays = getDaysInMonth(getDate().getMonth() + 1, getDate().getYear());
-  const curMonth = monthsArray[getDate().getMonth()];
+  const getDaysInMonth = function(month, year) {
+    return new Date(year, month, 0).getDate();
+  };
+  const curDays = getDaysInMonth(month+1, getDate().getYear());
+  const curMonth = monthsArray[month];
+  const curMonthNum = (getDate().getMonth());
+  const addMonthToState = month => changeMonth(month);
+  const matchCompletedMonth = (month, compArr) => {
+    const monthToMatch = "0" + (month + 1);
 
-  // const curMonthComp = compList.filter( compTodo => compTodo.dateCompletedStr === "27-03-2020")
-  // console.log(curMonthComp)
-  
-  const calendarDates = {};
-  const calendarJsx = [];
+  return compArr.filter(
+    month =>
+      month.dateCompletedStr
+        .split("-")
+        .slice(1, 2)
+        .join() === monthToMatch
+  );
+  }
+
+  const completedThisMonth = matchCompletedMonth(month, compList);
 
   const calendarDateMaker = numdays => {
+    let calendarDatesObj = {};
     for (let index = 1; index <= numdays; index++) {
-      calendarDates[index] = [index];
+      const indexZero = index < 10 ? "0"+index : index;
+      calendarDatesObj[indexZero] = [index];
     }
+    return calendarDatesObj;
   };
 
-  calendarDateMaker(curDays);
+  const calendarDates = calendarDateMaker(curDays);
 
-  compList.forEach(compTodo => {
-    const CompDate = compTodo.dateCompletedStr
-      .split("-")
-      .slice(0, 1)
-      .join();
-    calendarDates[CompDate].push(compTodo);
-  });
+  const addCompTodoToCalendar = compArr => {
+    compArr.forEach(compTodo => {
+      const CompDate = compTodo.dateCompletedStr
+        .split("-")
+        .slice(0, 1)
+        .join();
+      calendarDates[CompDate].push(compTodo);
+    });
+  };
 
-  const calendarJsxMaker = numdays => {
+  addCompTodoToCalendar(completedThisMonth);
+
+  const calendarJsxMaker = (numdays, monthArr) => {
+    const jsx = [];
     for (let index = 1; index <= numdays; index++) {
-      if (calendarDates[index].length > 1) {
-        const completedArr = calendarDates[index]
-          .splice(1, calendarDates[index].length)
-          .map(todoComp => <p className={styles.completedTitle}>{todoComp.title}</p>);
-        calendarJsx.push(
+      const indexZero = index < 10 ? "0"+index : index;
+      if (monthArr[indexZero].length > 1) {
+        const completedArr = monthArr[indexZero]
+          .splice(1, monthArr[indexZero].length)
+          .map(todoComp => (
+            <p className={styles.completedTitle}>{todoComp.title}</p>
+          ));
+        jsx.push(
           <div>
-            <p>{calendarDates[index]}</p>
+            <p>{monthArr[indexZero]}</p>
             {completedArr}
           </div>
         );
       } else {
-        calendarJsx.push(<p>{calendarDates[index]}</p>);
+        jsx.push(<p>{calendarDates[indexZero]}</p>);
       }
     }
+    return jsx;
   };
 
-  calendarJsxMaker(curDays);
+  const calendarJsx = calendarJsxMaker(curDays, calendarDates);
 
   return (
     <>
       <section className={styles.completed}>
-        <h2>{curMonth}</h2>
+          <button onClick={() => changeMonth(month-1)}>&lt;
+</button>
+          <h2>{curMonth}</h2>
+          <button onClick={() => changeMonth(month+1)}>&gt;</button>
         <div>{calendarJsx}</div>
       </section>
     </>
