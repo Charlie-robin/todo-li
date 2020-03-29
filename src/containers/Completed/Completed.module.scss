@@ -9,14 +9,14 @@
   align-items: center;
   padding: 50px;
 
-  >div {
+  .calendarMonth {
     width: 100%;
     display: flex;
     border-radius: $border-radius $border-radius 0 0;
     overflow: hidden;
     border: 2px solid $off-black;
     border-bottom: none;
-    
+
     button {
       height: 100%;
       display: inline-block;
@@ -37,13 +37,28 @@
       font-size: 50px;
       text-align: center;
       color: $off-white;
-      
-      
-      
     }
   }
 
-   .calendar {
+  .calendarYear {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-grow: 1 1 1;
+    p {
+      flex-grow: 1;
+      text-align: center;
+    }
+    button {
+      flex-grow: 1;
+    }
+    .completedHighLight,
+    .todoHighLight {
+      background-color: $primary-blue;
+    }
+  }
+
+  .calendarDates {
     border: 2px solid $off-black;
     border-radius: 0 0 $border-radius $border-radius;
     overflow: hidden;

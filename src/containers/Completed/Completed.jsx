@@ -122,7 +122,10 @@ const Completed = props => {
   };
 
   const showCompleted = () => {
-    const todoThisMonth = matchCompTodoMonth(month, matchCompTodoYear(year, compList));
+    const todoThisMonth = matchCompTodoMonth(
+      month,
+      matchCompTodoYear(year, compList)
+    );
     addCompTodoToCalendar(todoThisMonth);
   };
 
@@ -168,10 +171,13 @@ const Completed = props => {
     }
   };
 
+  const compStyles = completed ? styles.completedHighLight : null;
+  const todoStyles = !completed ? styles.todoHighLight : null;
+
   return (
     <>
       <section className={styles.completed}>
-        <div>
+        <div className={styles.calendarMonth}>
           <button
             onClick={() => {
               changeMonth(month - 1);
@@ -190,7 +196,16 @@ const Completed = props => {
             &gt;
           </button>
         </div>
-        <div className={styles.calendar}>{calendarJsx}</div>
+        <div className={styles.calendarYear}>
+          <button className={compStyles} onClick={() => toggleCompleted(true)}>
+            Completed
+          </button>
+          <p>{year}</p>
+          <button className={todoStyles} onClick={() => toggleCompleted(false)}>
+            Todo
+          </button>
+        </div>
+        <div className={styles.calendarDates}>{calendarJsx}</div>
       </section>
     </>
   );
