@@ -3,15 +3,17 @@ import styles from "./Completed.module.scss";
 import { useEffect, useState } from "react";
 
 const Completed = props => {
-  const { compList, getDate } = props;
+  const { todo, compList, getDate } = props;
   const [month, changeMonth] = useState("");
+  const [year, changeYear] = useState("");
+  const [completed, toggleCompleted] = useState(false);
 
   useEffect(() => {
-    addMonthToState(curMonthNum)
+    addMonthToState(curMonthNum);
+    addYearToState(curYear);
   }, []);
 
-
-  const monthsArray = [
+  const monthsByName = [
     "January",
     "February",
     "March",
@@ -29,34 +31,75 @@ const Completed = props => {
   const getDaysInMonth = function(month, year) {
     return new Date(year, month, 0).getDate();
   };
-  const curDays = getDaysInMonth(month+1, getDate().getYear());
-  const curMonth = monthsArray[month];
-  const curMonthNum = (getDate().getMonth());
+
+  const curYear = getDate().getFullYear();
+  const curDays = getDaysInMonth(month + 1, year);
+  const curMonthNum = getDate().getMonth();
+  const curMonthName = monthsByName[month];
+
   const addMonthToState = month => changeMonth(month);
-  const matchCompletedMonth = (month, compArr) => {
-    const monthToMatch = "0" + (month + 1);
+  const addYearToState = year => changeYear(year);
 
-  return compArr.filter(
-    month =>
-      month.dateCompletedStr
-        .split("-")
-        .slice(1, 2)
-        .join() === monthToMatch
-  );
-  }
-
-  const completedThisMonth = matchCompletedMonth(month, compList);
-
-  const calendarDateMaker = numdays => {
-    let calendarDatesObj = {};
-    for (let index = 1; index <= numdays; index++) {
-      const indexZero = index < 10 ? "0"+index : index;
-      calendarDatesObj[indexZero] = [index];
-    }
-    return calendarDatesObj;
+  const matchCompTodoYear = (year, todoList) => {
+    return todoList.filter(
+      todo =>
+        parseInt(
+          todo.dateCompletedStr
+            .split("-")
+            .slice(2, 3)
+            .join()
+        ) === year
+    );
   };
 
-  const calendarDates = calendarDateMaker(curDays);
+  const matchTodoYear = (year, todoList) => {
+    return todoList.filter(
+      todo =>
+        parseInt(
+          todo.dateCompleteBy
+            .split("-")
+            .slice(2, 3)
+            .join()
+        ) === year
+    );
+  };
+
+  const matchCompTodoMonth = (month, todoList) => {
+    return todoList.filter(
+      todo =>
+        parseInt(
+          todo.dateCompletedStr
+            .split("-")
+            .slice(1, 2)
+            .join()
+        ) ===
+        month + 1
+    );
+  };
+
+  const matchTodoMonth = (month, todoList) => {
+    return todoList.filter(
+      todo =>
+        parseInt(
+          todo.dateCompleteBy
+            .split("-")
+            .slice(1, 2)
+            .join()
+        ) ===
+        month + 1
+    );
+  };
+
+  let calendarDatesObj = {};
+
+  const calendarDateMaker = numdays => {
+    for (let index = 1; index <= numdays; index++) {
+      const indexTwoDigit = index < 10 ? "0" + index : index;
+      calendarDatesObj[indexTwoDigit] = [index];
+    }
+  };
+
+  calendarDateMaker(curDays);
 
   const addCompTodoToCalendar = compArr => {
     compArr.forEach(compTodo => {
@@ -64,45 +107,90 @@ const Completed = props => {
         .split("-")
         .slice(0, 1)
         .join();
-      calendarDates[CompDate].push(compTodo);
+      calendarDatesObj[CompDate].push(compTodo);
     });
   };
 
-  addCompTodoToCalendar(completedThisMonth);
+  const addTodoToCalendar = compArr => {
+    compArr.forEach(compTodo => {
+      const CompDate = compTodo.dateCreatedStr
+        .split("-")
+        .slice(0, 1)
+        .join();
+      calendarDatesObj[CompDate].push(compTodo);
+    });
+  };
+
+  const showCompleted = () => {
+    const todoThisMonth = matchCompTodoMonth(month, matchCompTodoYear(year, compList));
+    addCompTodoToCalendar(todoThisMonth);
+  };
+
+  const showTodo = () => {
+    const todoThisMonth = matchTodoMonth(month, matchTodoYear(year, todo));
+    addTodoToCalendar(todoThisMonth);
+  };
+
+  completed ? showCompleted() : showTodo();
 
   const calendarJsxMaker = (numdays, monthArr) => {
     const jsx = [];
     for (let index = 1; index <= numdays; index++) {
-      const indexZero = index < 10 ? "0"+index : index;
-      if (monthArr[indexZero].length > 1) {
-        const completedArr = monthArr[indexZero]
-          .splice(1, monthArr[indexZero].length)
+      const indexTwoDigit = index < 10 ? "0" + index : index;
+      if (monthArr[indexTwoDigit].length > 1) {
+        const completedArr = monthArr[indexTwoDigit]
+          .splice(1, monthArr[indexTwoDigit].length)
           .map(todoComp => (
             <p className={styles.completedTitle}>{todoComp.title}</p>
           ));
         jsx.push(
           <div>
-            <p>{monthArr[indexZero]}</p>
+            <p>{monthArr[indexTwoDigit]}</p>
             {completedArr}
           </div>
         );
       } else {
-        jsx.push(<p>{calendarDates[indexZero]}</p>);
+        jsx.push(<p>{calendarDatesObj[indexTwoDigit]}</p>);
       }
     }
     return jsx;
   };
 
-  const calendarJsx = calendarJsxMaker(curDays, calendarDates);
+  const calendarJsx = calendarJsxMaker(curDays, calendarDatesObj);
+
+  const checkMonthUpdateYear = action => {
+    if (month >= 11 && action === "plus") {
+      changeMonth(0);
+      changeYear(year + 1);
+    } else if (month <= 0 && action === "minus") {
+      changeYear(year - 1);
+      changeMonth(11);
+    }
+  };
 
   return (
     <>
       <section className={styles.completed}>
-          <button onClick={() => changeMonth(month-1)}>&lt;
-</button>
-          <h2>{curMonth}</h2>
-          <button onClick={() => changeMonth(month+1)}>&gt;</button>
-        <div>{calendarJsx}</div>
+        <div>
+          <button
+            onClick={() => {
+              changeMonth(month - 1);
+              checkMonthUpdateYear("minus");
+            }}
+          >
+            &lt;
+          </button>
+          <h2>{curMonthName}</h2>
+          <button
+            onClick={() => {
+              changeMonth(month + 1);
+              checkMonthUpdateYear("plus");
+            }}
+          >
+            &gt;
+          </button>
+        </div>
+        <div className={styles.calendar}>{calendarJsx}</div>
       </section>
     </>
   );

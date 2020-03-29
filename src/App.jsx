@@ -113,10 +113,11 @@ function App() {
   const getDateString = () => {
     const date = new Date();
     return `${date.getDate()}-${
-      date.getMonth() < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1
+      date.getMonth()+1 
     }-${date.getFullYear()}`;
   };
 
+ 
   const addNewListDb = () => {
     const newItems = [
       {
@@ -125,7 +126,8 @@ function App() {
         info: info,
         dateCreated: getDate(),
         dateCreatedStr: getDateString(),
-        dateCompleteBy: dateComplete
+        dateCompleteBy: dateComplete.split("-")
+        .reverse().join("-")
       },
       ...todo
     ];
@@ -149,7 +151,8 @@ function App() {
     const removedComp = newArray.filter(obj => obj.id !== value);
 
     const findComp = newArray.filter(obj => obj.id === value);
-    findComp[0].dateCompletedStr ="02-02-2020";
+    findComp[0].dateCompletedStr = getDateString();
+
 
     const newComp = [...findComp, ...completedList];
     const newDoc = { items: removedComp, completed: newComp };

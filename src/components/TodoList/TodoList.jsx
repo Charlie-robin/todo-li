@@ -7,7 +7,7 @@ const TodoList = props => {
   const dateDiff = () => {
     const msPerDay = 24 * 60 * 60 * 1000;
     const timeLeft =
-      new Date(itemList.dateCompleteBy).getTime() - currentDate.getTime();
+      new Date(itemList.dateCompleteBy.split("-").reverse()).getTime() - currentDate.getTime();
     return Math.ceil(timeLeft / msPerDay);
   };
 
@@ -22,16 +22,19 @@ const TodoList = props => {
         <div>
           <p>
             Creation :{" "}
-            {itemList.dateCreatedStr
+            {`${itemList.dateCreatedStr
               .split("-")
-              .slice(0, 2)
-              .join(" / ") || "N/A"}
+              .slice(0, 1)
+              .join(" / ")} / ${
+              itemList.dateCreatedStr.split("-").slice(1, 2) < 10
+                ? "0" + itemList.dateCreatedStr.split("-").slice(1, 2)
+                : itemList.dateCreatedStr.split("-").slice(1, 2)
+            }`}
           </p>
           <p>
             Completion :{" "}
             {itemList.dateCompleteBy
               .split("-")
-              .reverse()
               .slice(0, 2)
               .join(" / ") || "N/A"}
           </p>

@@ -19,7 +19,7 @@ const Routes = props => {
             addCompleted={value => addCompleted(value)}
             path="/dashboard"
           />
-          <Completed path="completed" compList={compList} getDate={() => getDate()}/>
+          <Completed path="completed" todo={todo} compList={compList} getDate={() => getDate()}/>
           
         </Router>
     </>
