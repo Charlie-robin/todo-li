@@ -9,3 +9,7 @@
 body{
     background-image: linear-gradient($off-white-trans, $off-black-trans), url(./assets/imgs/hip-square.png);
 }
+
+button {
+    transition: background-color 0.8s;
+}

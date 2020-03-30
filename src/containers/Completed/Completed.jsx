@@ -2,6 +2,9 @@ import React from "react";
 import styles from "./Completed.module.scss";
 import { useEffect, useState } from "react";
 
+import CalendarEmptyTile from "../../components/CalendarEmptyTile";
+import CalendarItemTile from "../../components/CalendarItemTile";
+
 const Completed = props => {
   const { todo, compList, getDate } = props;
   const [month, changeMonth] = useState("");
@@ -141,19 +144,17 @@ const Completed = props => {
     for (let index = 1; index <= numdays; index++) {
       const indexTwoDigit = index < 10 ? "0" + index : index;
       if (monthArr[indexTwoDigit].length > 1) {
-        const completedArr = monthArr[indexTwoDigit]
+        const todoArr = monthArr[indexTwoDigit]
           .splice(1, monthArr[indexTwoDigit].length)
-          .map(todoComp => (
-            <p className={styles.completedTitle}>{todoComp.title}</p>
-          ));
+          .map(todo => todo.title);
+        console.log(todoArr);
         jsx.push(
-          <div>
-            <p>{monthArr[indexTwoDigit]}</p>
-            {completedArr}
-          </div>
+          <CalendarItemTile number={monthArr[indexTwoDigit]} items={todoArr} />
         );
       } else {
-        jsx.push(<p>{calendarDatesObj[indexTwoDigit]}</p>);
+        jsx.push(
+          <CalendarEmptyTile number={calendarDatesObj[indexTwoDigit]} />
+        );
       }
     }
     return jsx;

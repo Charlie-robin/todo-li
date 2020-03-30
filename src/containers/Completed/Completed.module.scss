@@ -10,34 +10,38 @@
     width: 100%;
     margin-top: 15vh;
     border-radius: $border-radius;
-    border: 2px solid $off-black;
+    border: 3px solid $off-black;
     overflow: hidden;
+    background-color: $off-black-trans;
 
     .calendarMonth {
       width: 100%;
-      height: 30%;
       display: flex;
+      justify-content: space-between;
 
       button {
-        width: 10%;
+        flex-grow: 1;
         background-color: $off-black-trans;
         border: none;
         font-size: 40px;
         color: $off-white;
+        border-left: 2px solid $off-white;
         cursor: pointer;
-        border-left: 1px solid $off-black;
+
         &:hover {
-          background-color: $off-black;
+          background-color:$off-white-trans;
+          color: $off-black;
         }
+
         &:first-child {
           border-left: none;
-          border-right: 1px solid $off-black;
+          border-right: 2px solid $off-white;
         }
       }
 
       h2 {
-        background-color: $off-black-trans;
-        width: 80%;
+        background-color: $off-white-trans;
+        flex-grow: 1;
         height: 100%;
         font-size: 50px;
         text-align: center;
@@ -49,70 +53,54 @@
     .calendarYear {
       display: flex;
       width: 100%;
-      justify-content: center;
-      flex-grow: 1 1 1;
-      background-color: $off-white;
-      font-size: 20px;
-      border: 1px solid $off-black;
-      border-bottom: 1px solid $off-black;
+      background-color: $primary-yellow;
+      border-top: 2px solid $off-black;
+
       p {
-        padding: $base-spacing;
+        padding: $base-spacing/2;
         flex-grow: 1;
         text-align: center;
-        border-left: 1px solid $off-black;
-        border-right: 1px solid $off-black;
-        height: 100%;
+        font-size: 18px;
+        color: $off-black;
+        border-left: 2px solid $off-black;
+        border-right: 2px solid $off-black;
       }
+
       button {
+        font-size: 16px;
+        padding: $base-spacing/2;
         flex-grow: 1;
         border: none;
-        background-color: $off-black-trans;
+        background-color: $primary-red;
+        text-transform: uppercase;
+        cursor: pointer;
+        color: $off-black;
+
+        &:hover {
+          background-color: $primary-green;
+          color: $secondary-green;
+        }
       }
       .completedHighLight,
       .todoHighLight {
-        background-color: $primary-blue;
+        background-color: $primary-green;
         border: none;
+
+        &:hover {
+          cursor: unset;
+        }
       }
     }
 
     .calendarDates {
       overflow: hidden;
-      background-color: $off-black-trans;
       width: 100%;
       height: 70%;
       display: grid;
+      grid-gap: 2px;
+      padding-top: 2px;
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-
-      p {
-        background-color: $off-white;
-        border: .5px solid $off-black;
-        padding: $base-spacing;
-        font-size: 14px;
-      }
-      div {
-        border: .5px solid $off-black;
-        background-color: $off-white;
-        height: 100%;
-
-        p {
-          border: none;
-          text-transform: uppercase;
-          padding: $base-spacing;
-
-          &:first-child {
-            padding-bottom: 0;
-          }
-        }
-
-        .completedTitle {
-          color: $secondary-green;
-          background-color: $primary-green;
-          border-radius: $border-radius;
-          margin: $base-spacing/2 $base-spacing;
-          font-weight: bold;
-          
-        }
-      }
+      grid-auto-rows: minmax(50px, auto);
     }
   }
 }

@@ -1,0 +1,25 @@
+@import "../../variables.scss";
+
+.itemTile {
+  background-color: $off-white;
+  height: 100%;
+  color: $off-black;
+
+  p {
+    
+    text-transform: uppercase;
+    padding: $base-spacing;
+
+    &:first-child {
+      padding-bottom: 0;
+    }
+  }
+
+  .completedTitle {
+   border: 1px solid $secondary-green;
+    background-color: $primary-green;
+    border-radius: $border-radius;
+    margin: $base-spacing/2 $base-spacing;
+    text-align: center;
+  }
+}
