@@ -38,10 +38,10 @@ const NavBar = props => {
             </p>
           </div>
         </div>
-        <Link to={"/completed"}>
+        <Link to={"/completed"} className={styles.link}>
           <p>Calendar</p>
         </Link>
-        <Link to={"/dashboard"}>
+        <Link to={"/dashboard"} className={styles.link}>
           <p>List</p>
         </Link>
         <FontAwesomeIcon icon={faGoogle} />

@@ -17,7 +17,7 @@ const Routes = props => {
             getDate={() => getDate()}
             delDb={value => delDb(value)}
             addCompleted={value => addCompleted(value)}
-            path="/dashboard"
+            path="dashboard"
           />
           <Completed path="completed" todo={todo} compList={compList} getDate={() => getDate()}/>
           

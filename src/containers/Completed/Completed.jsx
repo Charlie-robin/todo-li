@@ -113,7 +113,7 @@ const Completed = props => {
 
   const addTodoToCalendar = compArr => {
     compArr.forEach(compTodo => {
-      const CompDate = compTodo.dateCreatedStr
+      const CompDate = compTodo.dateCompleteBy
         .split("-")
         .slice(0, 1)
         .join();
@@ -177,35 +177,43 @@ const Completed = props => {
   return (
     <>
       <section className={styles.completed}>
-        <div className={styles.calendarMonth}>
-          <button
-            onClick={() => {
-              changeMonth(month - 1);
-              checkMonthUpdateYear("minus");
-            }}
-          >
-            &lt;
-          </button>
-          <h2>{curMonthName}</h2>
-          <button
-            onClick={() => {
-              changeMonth(month + 1);
-              checkMonthUpdateYear("plus");
-            }}
-          >
-            &gt;
-          </button>
+        <div className={styles.calendarContainer}>
+          <div className={styles.calendarMonth}>
+            <button
+              onClick={() => {
+                changeMonth(month - 1);
+                checkMonthUpdateYear("minus");
+              }}
+            >
+              &lt;
+            </button>
+            <h2>{curMonthName}</h2>
+            <button
+              onClick={() => {
+                changeMonth(month + 1);
+                checkMonthUpdateYear("plus");
+              }}
+            >
+              &gt;
+            </button>
+          </div>
+          <div className={styles.calendarYear}>
+            <button
+              className={compStyles}
+              onClick={() => toggleCompleted(true)}
+            >
+              Completed
+            </button>
+            <p>{year}</p>
+            <button
+              className={todoStyles}
+              onClick={() => toggleCompleted(false)}
+            >
+              Todo
+            </button>
+          </div>
+          <div className={styles.calendarDates}>{calendarJsx}</div>
         </div>
-        <div className={styles.calendarYear}>
-          <button className={compStyles} onClick={() => toggleCompleted(true)}>
-            Completed
-          </button>
-          <p>{year}</p>
-          <button className={todoStyles} onClick={() => toggleCompleted(false)}>
-            Todo
-          </button>
-        </div>
-        <div className={styles.calendarDates}>{calendarJsx}</div>
       </section>
     </>
   );

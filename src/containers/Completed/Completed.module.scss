@@ -1,99 +1,117 @@
 @import "../../variables.scss";
 
 .completed {
-  height: 100vh;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  min-height: 100vh;
   padding: 50px;
 
-  .calendarMonth {
+  .calendarContainer {
+    height: 100%;
     width: 100%;
-    display: flex;
-    border-radius: $border-radius $border-radius 0 0;
-    overflow: hidden;
+    margin-top: 15vh;
+    border-radius: $border-radius;
     border: 2px solid $off-black;
-    border-bottom: none;
-
-    button {
-      height: 100%;
-      display: inline-block;
-      width: 10%;
-      background-color: $off-black-trans;
-      border: none;
-      font-size: 40px;
-      color: $off-white;
-      cursor: pointer;
-      &:hover {
-        background-color: $off-black;
-      }
-    }
-    h2 {
-      display: inline-block;
-      background-color: $off-black-trans;
-      width: 80%;
-      font-size: 50px;
-      text-align: center;
-      color: $off-white;
-    }
-  }
-
-  .calendarYear {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    flex-grow: 1 1 1;
-    p {
-      flex-grow: 1;
-      text-align: center;
-    }
-    button {
-      flex-grow: 1;
-    }
-    .completedHighLight,
-    .todoHighLight {
-      background-color: $primary-blue;
-    }
-  }
-
-  .calendarDates {
-    border: 2px solid $off-black;
-    border-radius: 0 0 $border-radius $border-radius;
     overflow: hidden;
-    background-color: $off-black-trans;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
-    p {
-      background-color: $off-white;
-      border: 1px solid $off-black;
-      padding: $base-spacing;
-      font-size: 14px;
-    }
-    div {
-      border: 1px solid $off-black;
-      background-color: $off-white;
-      height: 100%;
+    .calendarMonth {
+      width: 100%;
+      height: 30%;
+      display: flex;
 
-      p {
+      button {
+        width: 10%;
+        background-color: $off-black-trans;
         border: none;
-        text-transform: uppercase;
-        padding: $base-spacing;
-
+        font-size: 40px;
+        color: $off-white;
+        cursor: pointer;
+        border-left: 1px solid $off-black;
+        &:hover {
+          background-color: $off-black;
+        }
         &:first-child {
-          padding-bottom: 0;
+          border-left: none;
+          border-right: 1px solid $off-black;
         }
       }
 
-      .completedTitle {
-        color: $secondary-green;
-        background-color: $primary-green;
-        border-radius: $border-radius;
-        margin: $base-spacing/2 $base-spacing;
-        font-weight: bold;
+      h2 {
+        background-color: $off-black-trans;
+        width: 80%;
+        height: 100%;
+        font-size: 50px;
+        text-align: center;
+        color: $off-white;
+        text-transform: uppercase;
+      }
+    }
+
+    .calendarYear {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      flex-grow: 1 1 1;
+      background-color: $off-white;
+      font-size: 20px;
+      border: 1px solid $off-black;
+      border-bottom: 1px solid $off-black;
+      p {
+        padding: $base-spacing;
+        flex-grow: 1;
+        text-align: center;
+        border-left: 1px solid $off-black;
+        border-right: 1px solid $off-black;
+        height: 100%;
+      }
+      button {
+        flex-grow: 1;
+        border: none;
+        background-color: $off-black-trans;
+      }
+      .completedHighLight,
+      .todoHighLight {
+        background-color: $primary-blue;
+        border: none;
+      }
+    }
+
+    .calendarDates {
+      overflow: hidden;
+      background-color: $off-black-trans;
+      width: 100%;
+      height: 70%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+      p {
+        background-color: $off-white;
+        border: .5px solid $off-black;
+        padding: $base-spacing;
+        font-size: 14px;
+      }
+      div {
+        border: .5px solid $off-black;
+        background-color: $off-white;
+        height: 100%;
+
+        p {
+          border: none;
+          text-transform: uppercase;
+          padding: $base-spacing;
+
+          &:first-child {
+            padding-bottom: 0;
+          }
+        }
+
+        .completedTitle {
+          color: $secondary-green;
+          background-color: $primary-green;
+          border-radius: $border-radius;
+          margin: $base-spacing/2 $base-spacing;
+          font-weight: bold;
+          
+        }
       }
     }
   }
