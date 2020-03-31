@@ -1,0 +1,70 @@
+@import "../../variables.scss";
+
+.landingPage {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+//   background-image: linear-gradient($secondary-blue-trans, $off-black-trans);
+
+  div {
+    width: 25%;
+    height: 50%;
+    border: 2px solid $off-black;
+    border-radius: $border-radius;
+    overflow: hidden;
+    color: $off-black;
+
+    h2 {
+      height: 25%;
+      padding: $base-spacing;
+      text-align: center;
+      font-size: 40px;
+      background-color: $primary-green;
+      width: 100%;
+    }
+
+    p {
+      height: 25%;
+      padding: $base-spacing;
+      font-size: 30px;
+      background-color: $off-white;
+      color: $off-black;
+      text-align: center;
+      span {
+        width: 100%;
+      }
+    }
+
+    .google {
+      width: 100%;
+      height: 25%;
+      background-color: $primary-yellow;
+      padding: $base-spacing*2;
+      font-size: 20px;
+
+      &:hover {
+        background-color: $primary-green;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .changingWord {
+    color: $primary-red;
+  }
+  .changingWord:after {
+    content: " ";
+    animation: spin 5s ease-in-out infinite;
+  }
+
+  @keyframes spin {
+    from {
+      content: "Down...";
+    }
+    to {
+      content: "Done...";
+    }
+  }
+}

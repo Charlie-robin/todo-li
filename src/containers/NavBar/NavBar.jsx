@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./NavBar.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+
 import { Link } from "@reach/router";
 
 import TodoListInputs from "../../components/TodoListInputs";
@@ -30,21 +29,23 @@ const NavBar = props => {
   return (
     <>
       <navbar className={styles.navBar}>
-        <div>
-          <h1>&lt;Todo&gt;&lt;Li&gt;</h1>
+        <div className={styles.navBarContainer}>
           <div>
-            <p>
-              Get it <span className={styles.changingWord}></span>
-            </p>
+            <h1>&lt;Todo&gt;&lt;Li&gt;</h1>
+            <div>
+              <p>
+                Get it <span className={styles.changingWord}></span>
+              </p>
+            </div>
           </div>
+          <Link to={"/completed"} className={styles.link}>
+            <p>Calendar</p>
+          </Link>
+          <Link to={"/dashboard"} className={styles.link}>
+            <p>List</p>
+          </Link>
+         
         </div>
-        <Link to={"/completed"} className={styles.link}>
-          <p>Calendar</p>
-        </Link>
-        <Link to={"/dashboard"} className={styles.link}>
-          <p>List</p>
-        </Link>
-        <FontAwesomeIcon icon={faGoogle} />
       </navbar>
       <button
         className={styles.navBtn}
