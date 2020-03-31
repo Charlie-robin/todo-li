@@ -16,7 +16,6 @@ function App() {
       if (user) {
         setUser(user);
       } else {
-        alert("error");
         setUser(null);
       }
     });

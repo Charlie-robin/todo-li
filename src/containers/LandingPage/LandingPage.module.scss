@@ -6,9 +6,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-//   background-image: linear-gradient($secondary-blue-trans, $off-black-trans);
+  background-image: linear-gradient( $off-white-trans, $primary-blue-trans);
 
-  div {
+  > div {
     width: 25%;
     height: 50%;
     border: 2px solid $off-black;
@@ -25,15 +25,19 @@
       width: 100%;
     }
 
-    p {
-      height: 25%;
-      padding: $base-spacing;
-      font-size: 30px;
-      background-color: $off-white;
+    div {
+      height: 50%;
+      width: 100%;
       color: $off-black;
-      text-align: center;
-      span {
-        width: 100%;
+      background-color: $off-white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top: 1px solid $off-black;
+      border-bottom: 1px solid $off-black;
+      
+      p {
+        font-size: 40px;
       }
     }
 

@@ -1,14 +1,14 @@
-import React from "react";
-import styles from "./Routes.module.scss";
+import React, { useEffect, useState } from "react";
 import { Router, Redirect } from "@reach/router";
 import { firestore } from "../../firebase";
+
+import PrivateRoutes from "../PrivateRoutes";
 import NavBar from "../NavBar";
 import Dashboard from "../DashBoard";
-import Completed from "../Completed";
-import { useEffect, useState } from "react";
+import Calendar from "../Calendar";
 import LandingPage from "../LandingPage/LandingPage";
 
-const Routes = ({user}) => {
+const Routes = ({ user, signIn, signOut }) => {
   const [completedList, updateCompleted] = useState([]);
   const [todo, updateTodo] = useState([]);
   const [title, addTitle] = useState("");
@@ -22,17 +22,18 @@ const Routes = ({user}) => {
       .get()
       .then(doc => {
         const retirievedArray = doc.data();
-       if  (retirievedArray) {
-        updateTodo(retirievedArray.items)
-        updateCompleted(retirievedArray.completed)} ;
+        if (retirievedArray) {
+          updateTodo(retirievedArray.items);
+          updateCompleted(retirievedArray.completed);
+        }
       });
   };
 
-  useEffect(()=> {
-    if(user){getAllTodos()};
-  },[user])
-
-  
+  useEffect(() => {
+    if (user) {
+      getAllTodos();
+    }
+  }, [user]);
 
   const deleteFromDb = value => {
     const newArray = [...todo];
@@ -115,17 +116,19 @@ const Routes = ({user}) => {
   const checkInputsAddDb = () =>
     title !== "" && info !== "" && dateComplete !== "" ? addNewListDb() : null;
 
-
   return (
     <>
-    {/* <NavBar
+      <NavBar
         title={value => addTitle(value)}
         info={value => addInfo(value)}
         dateComplete={value => addDateComplete(value)}
         checkInput={() => checkInputsAddDb()}
-      /> */}
-        <Router>
-        <LandingPage path="landing-page" />
+        signOut={() => signOut()}
+      />
+      <Router>
+        <Redirect noThrow from="/" to="landing-page" />
+        <LandingPage path="landing-page" signIn={() => signIn()} user={user} />
+        <PrivateRoutes path="/">
           <Dashboard
             todo={todo}
             getDate={() => getDate()}
@@ -134,9 +137,14 @@ const Routes = ({user}) => {
             compList={completedList}
             path="dashboard"
           />
-          <Completed path="completed" todo={todo} compList={completedList} getDate={() => getDate()}/>
-          
-        </Router>
+          <Calendar
+            path="calendar"
+            todo={todo}
+            compList={completedList}
+            getDate={() => getDate()}
+          />
+        </PrivateRoutes>
+      </Router>
     </>
   );
 };

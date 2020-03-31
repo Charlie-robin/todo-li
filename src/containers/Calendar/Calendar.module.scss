@@ -3,12 +3,12 @@
 .completed {
   width: 100%;
   min-height: 100vh;
-  padding: 50px;
+  padding: 20vh 50px 0 50px;
+  
 
   .calendarContainer {
     height: 100%;
     width: 100%;
-    margin-top: 15vh;
     border-radius: $border-radius;
     border: 3px solid $off-black;
     overflow: hidden;

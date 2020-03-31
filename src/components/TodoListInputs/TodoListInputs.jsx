@@ -12,6 +12,7 @@ const TodoListInputs = props => {
             type="text"
             placeholder="Enter Title..."
             onInput={event => title(event.target.value)}
+            maxlength="30"
             required
           ></input>
         </div>
@@ -19,6 +20,7 @@ const TodoListInputs = props => {
           type="text"
           placeholder="Add Info..."
           onInput={event => info(event.target.value)}
+          maxlength="200"
           required
         ></textarea>
         <div>

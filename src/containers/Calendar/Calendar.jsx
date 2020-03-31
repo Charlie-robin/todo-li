@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "./Completed.module.scss";
+import styles from "./Calendar.module.scss";
 import { useEffect, useState } from "react";
 
 import CalendarEmptyTile from "../../components/CalendarEmptyTile";
 import CalendarItemTile from "../../components/CalendarItemTile";
 
-const Completed = props => {
+const Calendar = props => {
   const { todo, compList, getDate } = props;
   const [month, changeMonth] = useState("");
   const [year, changeYear] = useState("");
@@ -220,4 +220,4 @@ const Completed = props => {
   );
 };
 
-export default Completed;
+export default Calendar;

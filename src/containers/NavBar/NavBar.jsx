@@ -4,10 +4,19 @@ import styles from "./NavBar.module.scss";
 import { Link } from "@reach/router";
 
 import TodoListInputs from "../../components/TodoListInputs";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+
+import { faDoorOpen } from "@fortawesome/free-solid-svg-icons";
+
 
 const NavBar = props => {
-  const { title, info, dateComplete, checkInput } = props;
+  const { title, info, dateComplete, checkInput, signOut } = props;
   const [inputModalVisible, showInputModal] = useState(false);
+  const [listNav, toggleListNav] = useState(true);
+
+  const navContent = listNav ? "Calendar" : "List";
+  const navLink = listNav ? "/calendar" : "/dashboard";
 
   const insertModalJsx = inputModalVisible ? (
     <section
@@ -30,21 +39,11 @@ const NavBar = props => {
     <>
       <navbar className={styles.navBar}>
         <div className={styles.navBarContainer}>
-          <div>
-            <h1>&lt;Todo&gt;&lt;Li&gt;</h1>
-            <div>
-              <p>
-                Get it <span className={styles.changingWord}></span>
-              </p>
-            </div>
-          </div>
-          <Link to={"/completed"} className={styles.link}>
-            <p>Calendar</p>
+          <Link to={navLink} className={styles.link} onClick={() => toggleListNav(!listNav)}>
+            <p>{navContent}</p>
           </Link>
-          <Link to={"/dashboard"} className={styles.link}>
-            <p>List</p>
-          </Link>
-         
+            <h1>&lt;Todo&gt;<span>&lt;Li&gt;</span></h1>
+          <FontAwesomeIcon icon={faDoorOpen} className={styles.exit} onClick={() => signOut()}/>
         </div>
       </navbar>
       <button

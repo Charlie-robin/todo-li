@@ -15,57 +15,57 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: $base-spacing;
+    padding: 0 $base-spacing * 3;
     border-radius: 0 0 $border-radius $border-radius;
     border: 2px solid $off-black;
     border-top: none;
 
-    > div {
-      width: 40%;
-      display: flex;
-      align-items: center;
-
-      h1 {
-        letter-spacing: 2px;
-      }
-
-      div {
-        display: flex;
-        flex-direction: column;
-        margin-left: $base-spacing * 5;
-
-        p {
-          transition: content 0.2s;
-          font-weight: bold;
-        }
-      }
+    h1 {
+      letter-spacing: 2px;
     }
+    span {
+      color: $primary-red;
+    }
+
     .link {
       color: $off-black;
       font-weight: bold;
       text-decoration: none;
       letter-spacing: 1.2px;
+      width: 80px;
+      &:hover {
+        color: $primary-red;
+        cursor: pointer;
+      }
+    }
+
+    .exit {
+      &:hover {
+        color: $primary-red;
+        cursor: pointer;
+      }
     }
   }
 }
 .navBtn {
   position: fixed;
-  left: 80px;
+  left: 60px;
   top: 10vh;
   padding: $base-spacing $base-spacing * 2;
-  background-color: $off-black;
+  background-color: $primary-blue;
   border: none;
   border-radius: 0 0 $border-radius $border-radius;
   font-weight: bold;
-  color: $off-white;
+  color: $secondary-blue;
   z-index: 2;
-  border: 1px solid $off-white;
+  border: 2px solid $secondary-blue;
   border-top: none;
 
   &:hover {
     cursor: pointer;
-    background-color: $off-white;
-    color: $off-black;
+    background-color: $primary-blue-shade;
+    border: 2px solid $primary-blue;
+    border-top: none;
   }
 }
 
@@ -82,23 +82,5 @@
   div {
     height: 40%;
     width: 40%;
-  }
-}
-
-.changingWord {
-  opacity: 0.8;
-  color: $primary-red;
-}
-.changingWord:after {
-  content: " ";
-  animation: spin 5s ease-in-out infinite;
-}
-
-@keyframes spin {
-  from {
-    content: "Down.";
-  }
-  to {
-    content: "Done.";
   }
 }
