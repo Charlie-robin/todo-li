@@ -18,8 +18,8 @@ Originally a todo list application centered around the integration of a database
 ## Getting Started
 
 1. Clone the repo
-2. run yarn install
-3. run yarn start
+2. yarn install
+3. yarn start
 
 ## In Progress 
 
