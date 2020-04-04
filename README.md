@@ -25,7 +25,7 @@ Originally a todo list application centered around the integration of a database
 
 To see what is in the work que, follow the link.
 
-[Todo Li - trello](https://trello.com/b/FWtMj3Vw/todo-li)
+[Todo Li - Trello](https://trello.com/b/FWtMj3Vw/todo-li)
 
 ## Contact
 
