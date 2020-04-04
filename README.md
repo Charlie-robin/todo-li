@@ -1,5 +1,5 @@
-# <TODO> <LI>
-## Get it done, get it done.
+# Todo Li
+## Get it down, get it done.
 
 ## Description
 
@@ -17,19 +17,19 @@ Originally a todo list application centered around the integration of a database
 
 ## Getting Started
 
-1.Clone the repo
-2.run yarn install
-3.run yarn start
+1. Clone the repo
+2. run yarn install
+3. run yarn start
 
 ## In Progress 
 
 To see what is in the work que, follow the link.
 
-[To public Todo - li trello board](https://trello.com/b/FWtMj3Vw/todo-li)
+[Todo Li - trello](https://trello.com/b/FWtMj3Vw/todo-li)
 
 ## Contact
 
-To see more of mt work or to get intouch here is a link to my portfolio. To get in touch go to the contact section at the bottom.
+To see more of my work or to get intouch follow the link below. To get in touch go to the contact section at the bottom.
 
 [Charlie Richardson Portfolio](https://www.charlie-richardson.co.uk/)
 
