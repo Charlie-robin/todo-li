@@ -1,19 +1,19 @@
 # Todo Li
-## Get it down, get it done.
+## Get it down. 
+## Get it done.
 
 ## Description
 
 Originally a todo list application centered around the integration of a database with the utilization of CRUD. Extended with the addition of authentication, private routing and a personal calendar feature.  I enjoyed coding the calendar, it was fun to useState and date functions in a direct and practical manner. 
 
-
 ## Built With 
 
-*React
-*Firebase - Auth + DB
-*Fontawesome - Icons
-*@reachrouter
-*node-sass
-*mkrc
+* React
+* Firebase - Auth + DB
+* Fontawesome - Icons
+* @reachrouter
+* node-sass
+* mkrc
 
 ## Getting Started
 
