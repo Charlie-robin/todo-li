@@ -1,6 +1,6 @@
 # Todo Li
-## Get it down. 
-## Get it done.
+Get it down. 
+Get it done.
 
 ## Description
 
