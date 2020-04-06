@@ -29,7 +29,7 @@ To see what is in the work que, follow the link.
 
 ## Contact
 
-To see more of my work or to get intouch follow the link below. To get in touch go to the contact section at the bottom.
+To see more of my work or to get in touch follow the link below. To get in touch go to the contact section at the bottom.
 
 [Charlie Richardson Portfolio](https://www.charlie-richardson.co.uk/)
 
