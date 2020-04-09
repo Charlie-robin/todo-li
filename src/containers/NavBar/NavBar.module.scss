@@ -22,53 +22,82 @@
 
     h1 {
       letter-spacing: 2px;
+      font-size: 35px;
     }
     span {
       color: $primary-red;
     }
 
+    .icon {
+      font-size: 25px;
+      color: $off-black-trans;
+      &:hover {
+        color: $primary-red;
+        cursor: pointer;
+      }
+    }
+  }
+  .navBarSubContainer {
+    width: 100%;
+    position: fixed;
+    display: flex;
+    padding: 0 30px;
+
+    .navBtn {
+      background-color: $primary-blue;
+      color: $secondary-blue;
+      border: 2px solid $secondary-blue;
+      margin-right: 10px;
+      &:hover {
+        cursor: pointer;
+        background-color: $primary-blue-shade;
+        border: 2px solid $primary-blue;
+        border-top: none;
+      }
+    }
+
+    .navBtn,
     .link {
-      color: $off-black;
+      padding: $base-spacing $base-spacing * 2;
+      border-radius: 0 0 $border-radius $border-radius;
       font-weight: bold;
-      text-decoration: none;
+      z-index: 2;
+      border-top: none;
       letter-spacing: 1.2px;
-      width: 80px;
+      font-size: 15px;
+    }
+
+    .link {
+      color: $off-white;
+      background-color: $off-black-trans;
+      border: 2px solid $off-black;
+      border-right: none;
+      border-top: none;
+      text-decoration: none;
+      border-radius: 0 0 0 $border-radius;
+
+      &:last-child {
+        border-right: 2px solid $off-black;
+        border-left: none;
+        border-radius: 0 0  $border-radius 0;
+      }
+
       &:hover {
-        color: $primary-red;
+        background-color: $primary-green;
+        color: $secondary-green;
         cursor: pointer;
       }
     }
-
-    .exit {
+    .linkHighlight {
+      background-color: $primary-green;
+      color: $off-black;
       &:hover {
-        color: $primary-red;
-        cursor: pointer;
+        color: $off-black;
+        cursor: unset;
       }
     }
   }
 }
-.navBtn {
-  position: fixed;
-  left: 60px;
-  top: 10vh;
-  padding: $base-spacing $base-spacing * 2;
-  background-color: $primary-blue;
-  border: none;
-  border-radius: 0 0 $border-radius $border-radius;
-  font-weight: bold;
-  color: $secondary-blue;
-  z-index: 2;
-  border: 2px solid $secondary-blue;
-  border-top: none;
-
-  &:hover {
-    cursor: pointer;
-    background-color: $primary-blue-shade;
-    border: 2px solid $primary-blue;
-    border-top: none;
-  }
-}
-
 .inputModal {
   background-color: $off-black-trans;
   position: fixed;

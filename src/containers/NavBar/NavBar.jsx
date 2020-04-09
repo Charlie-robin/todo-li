@@ -6,28 +6,26 @@ import { Link } from "@reach/router";
 import TodoListInputs from "../../components/TodoListInputs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { faDoorOpen, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
-import { faDoorOpen } from "@fortawesome/free-solid-svg-icons";
-
-
-const NavBar = props => {
+const NavBar = (props) => {
   const { title, info, dateComplete, checkInput, signOut } = props;
   const [inputModalVisible, showInputModal] = useState(false);
-  const [listNav, toggleListNav] = useState(true);
+  const [pageBtnHighlight, toggleBtnHighLight] = useState("list");
 
-  const navContent = listNav ? "Calendar" : "List";
-  const navLink = listNav ? "/calendar" : "/dashboard";
+  const listLinkHighlight = pageBtnHighlight === "list" ?  "linkHighlight" : "";
+  const calendarLinkHighLight = pageBtnHighlight === "calendar" ? "linkHighlight" : "";
 
   const insertModalJsx = inputModalVisible ? (
     <section
       className={styles.inputModal}
       onClick={() => showInputModal(!inputModalVisible)}
     >
-      <div onClick={event => event.stopPropagation()}>
+      <div onClick={(event) => event.stopPropagation()}>
         <TodoListInputs
-          title={value => title(value)}
-          info={value => info(value)}
-          dateComplete={value => dateComplete(value)}
+          title={(value) => title(value)}
+          info={(value) => info(value)}
+          dateComplete={(value) => dateComplete(value)}
           handleClick={checkInput}
           hideModal={() => showInputModal(false)}
         />
@@ -39,19 +37,44 @@ const NavBar = props => {
     <>
       <navbar className={styles.navBar}>
         <div className={styles.navBarContainer}>
-          <Link to={navLink} className={styles.link} onClick={() => toggleListNav(!listNav)}>
-            <p>{navContent}</p>
+          <FontAwesomeIcon
+            icon={faInfoCircle}
+            className={styles.icon}
+            onClick={() => signOut()}
+          />
+          <h1>
+            &lt;Todo&gt;<span>&lt;Li&gt;</span>
+          </h1>
+          <FontAwesomeIcon
+            icon={faDoorOpen}
+            className={styles.icon}
+            onClick={() => signOut()}
+          />
+        </div>
+        <div className={styles.navBarSubContainer}>
+          <button
+            className={styles.navBtn}
+            onClick={() => showInputModal(!inputModalVisible)}
+          >
+            Create New Todo
+          </button>
+          <Link
+            to="/calendar"
+            className={`${styles.link} ${styles[calendarLinkHighLight]}`}
+            onClick={() => toggleBtnHighLight("calendar")}
+          >
+            <p>Calendar</p>{" "}
           </Link>
-            <h1>&lt;Todo&gt;<span>&lt;Li&gt;</span></h1>
-          <FontAwesomeIcon icon={faDoorOpen} className={styles.exit} onClick={() => signOut()}/>
+
+          <Link
+            to="/dashboard"
+            className={`${styles.link} ${styles[listLinkHighlight]}`}
+            onClick={() => toggleBtnHighLight("list")}
+          >
+            <p>List</p>{" "}
+          </Link>
         </div>
       </navbar>
-      <button
-        className={styles.navBtn}
-        onClick={() => showInputModal(!inputModalVisible)}
-      >
-        Create New Todo
-      </button>
       {insertModalJsx}
     </>
   );

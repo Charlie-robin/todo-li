@@ -16,7 +16,7 @@
   }
 
   .completedTitle {
-   border: 1px solid $secondary-green;
+    border: 1px solid $secondary-green;
     background-color: $primary-green;
     border-radius: $border-radius;
     margin: $base-spacing/2 0;
@@ -25,34 +25,24 @@
   }
 }
 
-
 @media only screen and (min-width: 764px) {
-  
-.itemTile {
-  background-color: $off-white;
-  height: 100%;
-  color: $off-black;
+  .itemTile {
+    p {
+    }
 
-  p {
-    
-    text-transform: uppercase;
-    padding: $base-spacing;
-
-    &:first-child {
-      padding-bottom: 0;
+    .completedTitle {
+      border: 2px solid $secondary-green;
     }
   }
-
-  .completedTitle {
-   border: 1px solid $secondary-green;
-    background-color: $primary-green;
-    border-radius: $border-radius;
-    margin: $base-spacing/2 $base-spacing;
-    text-align: center;
-  }
-}
 }
 @media only screen and (min-width: 1024px) {
-  
+  .itemTile {
+    padding: $base-spacing;
+    p {
+      padding: 0;
+    }
+    .completedTitle, p {
+      font-size: 18px;
+    }
+  }
 }
-
