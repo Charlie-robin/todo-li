@@ -1,9 +1,26 @@
 @import "../../variables.scss";
 
 .dashContainer {
-    display: grid;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+  padding: 20px 10px;
+  padding-top: 20vh;
+  grid-template-rows: auto;
+  max-width: 1024px;
+}
+
+@media only screen and (min-width: 764px) {
+  .dashContainer {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 25px;
+    padding: 20vh 50px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .dashContainer {
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 50px;
-    padding: 20vh 50px;
-    grid-template-rows: minmax(250px, auto);
   }
+}

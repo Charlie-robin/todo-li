@@ -106,11 +106,13 @@ const Calendar = props => {
 
   const addCompTodoToCalendar = compArr => {
     compArr.forEach(compTodo => {
-      const CompDate = compTodo.dateCompletedStr
+      const compDate = compTodo.dateCompletedStr
         .split("-")
         .slice(0, 1)
         .join();
-      calendarDatesObj[CompDate].push(compTodo);
+        const twoDigitDate = compDate < 10 ? "0" + compDate : compDate;
+        console.log(twoDigitDate);
+      calendarDatesObj[twoDigitDate].push(compTodo);
     });
   };
 

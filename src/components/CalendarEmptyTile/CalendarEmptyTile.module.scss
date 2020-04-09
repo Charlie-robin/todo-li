@@ -2,6 +2,20 @@
 .calendarTile {
   color: $off-black;
   background-color: $off-white;
-  padding: $base-spacing;
-  font-size: 14px;
+  padding: $base-spacing/2;
+  font-size: 12px;
 }
+
+@media only screen and (min-width: 764px) {
+  .calendarTile {
+    color: $off-black;
+    background-color: $off-white;
+    padding: $base-spacing;
+    font-size: 14px;
+  }
+  
+ 
+  }
+  @media only screen and (min-width: 1024px) {
+    
+  }

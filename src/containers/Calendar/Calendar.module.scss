@@ -3,8 +3,7 @@
 .completed {
   width: 100%;
   min-height: 100vh;
-  padding: 20vh 50px 0 50px;
-  
+  padding: 20vh 10px 10px 10px;
 
   .calendarContainer {
     height: 100%;
@@ -23,13 +22,13 @@
         flex-grow: 1;
         background-color: $off-black-trans;
         border: none;
-        font-size: 40px;
+        font-size: 30px;
         color: $off-white;
         border-left: 2px solid $off-white;
         cursor: pointer;
 
         &:hover {
-          background-color:$off-white-trans;
+          background-color: $off-white-trans;
           color: $off-black;
         }
 
@@ -40,10 +39,9 @@
       }
 
       h2 {
-        background-color: $off-white-trans;
         flex-grow: 1;
         height: 100%;
-        font-size: 50px;
+        font-size: 30px;
         text-align: center;
         color: $off-white;
         text-transform: uppercase;
@@ -60,16 +58,16 @@
         padding: $base-spacing/2;
         flex-grow: 1;
         text-align: center;
-        font-size: 18px;
+        font-size: 14px;
         color: $off-black;
         border-left: 2px solid $off-black;
         border-right: 2px solid $off-black;
       }
 
       button {
-        font-size: 16px;
+        font-size: 12px;
         padding: $base-spacing/2;
-        flex-grow: 1;
+        width: 30%;
         border: none;
         background-color: $primary-red;
         text-transform: uppercase;
@@ -101,6 +99,50 @@
       padding-top: 2px;
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
       grid-auto-rows: minmax(50px, auto);
+    }
+  }
+}
+
+@media only screen and (min-width: 764px) {
+  .completed {
+    padding: 20vh 50px 50px 50px;
+
+    .calendarContainer {
+      .calendarMonth {
+        button {
+          font-size: 50px;
+        }
+
+        h2 {
+          font-size: 40px;
+        }
+      }
+
+      .calendarYear {
+        p {
+          font-size: 20px;
+          width: 30%;
+        }
+
+        button {
+          font-size: 18px;
+          flex-grow: 1;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .calendarContainer {
+    .calendarMonth {
+      button {
+        font-size: 40px;
+      }
+
+      h2 {
+        font-size: 50px;
+      }
     }
   }
 }
