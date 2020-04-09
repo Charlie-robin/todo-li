@@ -56,7 +56,7 @@ const NavBar = (props) => {
             className={styles.navBtn}
             onClick={() => showInputModal(!inputModalVisible)}
           >
-            Create New Todo
+            Create <span>New Todo</span>
           </button>
           <Link
             to="/calendar"
