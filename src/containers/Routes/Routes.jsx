@@ -64,7 +64,7 @@ const Routes = ({ user, signIn, signOut }) => {
   };
 
   const addNewListDb = () => {
-    console.log("something is happening")
+    console.log("something is happening");
     const newItems = [
       {
         id: randomId(),

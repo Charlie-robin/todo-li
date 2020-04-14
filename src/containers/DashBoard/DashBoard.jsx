@@ -6,14 +6,15 @@ const DashBoard = props => {
   const { todo, getDate, delDb, addCompleted } = props;
   const insertTodoLists = () => {
     return todo.map(todoItem => (
-      <>
+      
         <TodoList
+        key={todoItem.id}
           itemList={todoItem}
           currentDate={getDate()}
           delDb={() => delDb(todoItem.id)}
           addCompleted={() => addCompleted(todoItem.id) }
         />
-      </>
+  
     ));
   };
 
