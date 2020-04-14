@@ -13,8 +13,9 @@ const NavBar = (props) => {
   const [inputModalVisible, showInputModal] = useState(false);
   const [pageBtnHighlight, toggleBtnHighLight] = useState("list");
 
-  const listLinkHighlight = pageBtnHighlight === "list" ?  "linkHighlight" : "";
-  const calendarLinkHighLight = pageBtnHighlight === "calendar" ? "linkHighlight" : "";
+  const listLinkHighlight = pageBtnHighlight === "list" ? "linkHighlight" : "";
+  const calendarLinkHighLight =
+    pageBtnHighlight === "calendar" ? "linkHighlight" : "";
 
   const insertModalJsx = inputModalVisible ? (
     <section
@@ -35,13 +36,9 @@ const NavBar = (props) => {
 
   return (
     <>
-      <navbar className={styles.navBar}>
+      <nav className={styles.navBar}>
         <div className={styles.navBarContainer}>
-          <FontAwesomeIcon
-            icon={faInfoCircle}
-            className={styles.icon}
-            onClick={() => signOut()}
-          />
+          <FontAwesomeIcon icon={faInfoCircle} className={styles.icon} />
           <h1>
             &lt;Todo&gt;<span>&lt;Li&gt;</span>
           </h1>
@@ -74,7 +71,7 @@ const NavBar = (props) => {
             <p>List</p>{" "}
           </Link>
         </div>
-      </navbar>
+      </nav>
       {insertModalJsx}
     </>
   );
