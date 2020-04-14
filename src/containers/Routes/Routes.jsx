@@ -64,7 +64,6 @@ const Routes = ({ user, signIn, signOut }) => {
   };
 
   const addNewListDb = () => {
-    console.log("something is happening");
     const newItems = [
       {
         id: randomId(),
@@ -72,14 +71,11 @@ const Routes = ({ user, signIn, signOut }) => {
         info: info,
         dateCreated: getDate(),
         dateCreatedStr: getDateString(),
-        dateCompleteBy: dateComplete
-          .split("-")
-          .reverse()
-          .join("-")
+        dateCompleteBy: dateComplete.split("-").reverse().join("-")
       },
       ...todo
     ];
-
+    
     const newDoc = { items: newItems, completed: completedList };
 
     firestore
