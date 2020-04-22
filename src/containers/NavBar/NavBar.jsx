@@ -10,6 +10,7 @@ import { faDoorOpen, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 const NavBar = (props) => {
   const { title, info, dateComplete, checkInput, signOut } = props;
+
   const [inputModalVisible, showInputModal] = useState(false);
   const [pageBtnHighlight, toggleBtnHighLight] = useState("list");
 
@@ -27,8 +28,8 @@ const NavBar = (props) => {
           title={(value) => title(value)}
           info={(value) => info(value)}
           dateComplete={(value) => dateComplete(value)}
-          handleClick={checkInput}
-          hideModal={() => showInputModal(false)}
+          handleClick={() => checkInput()}
+          hideModal={() => showInputModal(!inputModalVisible)}
         />
       </div>
     </section>

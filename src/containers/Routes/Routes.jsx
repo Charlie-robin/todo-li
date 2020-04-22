@@ -15,14 +15,12 @@ const Routes = ({ user, signIn, signOut }) => {
   const [info, addInfo] = useState("");
   const [dateComplete, addDateComplete] = useState("");
 
-
-
   const getAllTodos = () => {
     firestore
       .collection("todo-list")
       .doc(user.uid)
       .get()
-      .then(doc => {
+      .then((doc) => {
         const retirievedArray = doc.data();
         if (retirievedArray) {
           updateTodo(retirievedArray.items);
@@ -37,9 +35,9 @@ const Routes = ({ user, signIn, signOut }) => {
     }
   }, [user]);
 
-  const deleteFromDb = value => {
+  const deleteFromDb = (value) => {
     const newArray = [...todo];
-    const newData = newArray.filter(obj => obj.id !== value);
+    const newData = newArray.filter((obj) => obj.id !== value);
     const newDoc = { items: newData, completed: completedList };
 
     firestore
@@ -49,7 +47,7 @@ const Routes = ({ user, signIn, signOut }) => {
       .then(() => {
         getAllTodos();
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -71,11 +69,11 @@ const Routes = ({ user, signIn, signOut }) => {
         info: info,
         dateCreated: getDate(),
         dateCreatedStr: getDateString(),
-        dateCompleteBy: dateComplete.split("-").reverse().join("-")
+        dateCompleteBy: dateComplete.split("-").reverse().join("-"),
       },
-      ...todo
+      ...todo,
     ];
-    
+
     const newDoc = { items: newItems, completed: completedList };
 
     firestore
@@ -84,17 +82,18 @@ const Routes = ({ user, signIn, signOut }) => {
       .set(newDoc)
       .then(() => {
         getAllTodos();
+        resetInput();
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
 
-  const addToCompletedDb = value => {
+  const addToCompletedDb = (value) => {
     const newArray = [...todo];
-    const removedComp = newArray.filter(obj => obj.id !== value);
+    const removedComp = newArray.filter((obj) => obj.id !== value);
 
-    const findComp = newArray.filter(obj => obj.id === value);
+    const findComp = newArray.filter((obj) => obj.id === value);
     findComp[0].dateCompletedStr = getDateString();
 
     const newComp = [...findComp, ...completedList];
@@ -107,20 +106,26 @@ const Routes = ({ user, signIn, signOut }) => {
       .then(() => {
         getAllTodos();
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
 
   const checkInputsAddDb = () =>
-    title !== "" && info !== "" && dateComplete !== "" ? addNewListDb() : null;
+    title !== "" && info !== "" && dateComplete !== "" ? addNewListDb() : "";
+
+  const resetInput = () => {
+    addTitle("");
+    addInfo("");
+    addDateComplete("");
+  };
 
   return (
     <>
       <NavBar
-        title={value => addTitle(value)}
-        info={value => addInfo(value)}
-        dateComplete={value => addDateComplete(value)}
+        title={(value) => addTitle(value)}
+        info={(value) => addInfo(value)}
+        dateComplete={(value) => addDateComplete(value)}
         checkInput={() => checkInputsAddDb()}
         signOut={() => signOut()}
       />
@@ -131,8 +136,8 @@ const Routes = ({ user, signIn, signOut }) => {
           <Dashboard
             todo={todo}
             getDate={() => getDate()}
-            delDb={value => deleteFromDb(value)}
-            addCompleted={value => addToCompletedDb(value)}
+            delDb={(value) => deleteFromDb(value)}
+            addCompleted={(value) => addToCompletedDb(value)}
             compList={completedList}
             path="dashboard"
           />
